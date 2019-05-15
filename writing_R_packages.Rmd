@@ -32,6 +32,9 @@ Simple, useful, great:  [Hadley Wickham's website](http://r-pkgs.had.co.nz/)
 
 Comprehensive: [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html)
 
+Other nice tutorials are [this one](http://web.mit.edu/insong/www/pdf/rpackage_instructions.pdf) or 
+[this one](http://tinyheero.github.io/jekyll/update/2015/07/26/making-your-first-R-package.html). 
+
 ********************************************************************************
 
 
@@ -43,13 +46,25 @@ Before we start, you might need the following packages:
 install.packages(c("devtools", "roxygen2", "knitr"))
 ```
 
+We also need a **name**! Needs to be unique, easily "googleable", avoid mixtures
+of upper and lower cases (RColorBrewer or Rcolorbrewer? EcoSimR or ecosimR or ecosimr?)
+
 Now we can initialize a package.
 
 **1. From within R console:**
 
+Using a function from `utils`:
+
 ```
 package.skeleton("shampoo")
 ```
+
+Using a function from `devtools`:
+
+```
+create_package("shampoo")
+```
+
 Note that all objects and functions that are currently in the R environment are exported!
 
 **2. With R studio:**
@@ -93,15 +108,21 @@ If you want the datasets to have their own documentation, insert a `data.R`
 file into the R/ folder for roxygen2 to parse.
 
 
-### Other things: src/ vignettes/ tests/
+### src/
 
-This is where compiled code, vignettes, and code testing is. All useful, but
-we will skip it.
-
-Anyway, if you plan to include C++ code in your package, I strongly recommend
-to use a predefined template in R studio, i.e.:
+This is where compiled code is. If you plan to include C++ code in your package, I strongly recommend to use a predefined template in R studio, i.e.:
 
 File -> New Project -> New Directory -> R package with C++ code
+
+For a really smooth intro to C++ in R see [Hadley Wickham's tutorial](http://adv-r.had.co.nz/Rcpp.html).
+
+### vignettes/ 
+
+```
+devtools::use_vignette("how_shampoo_works")
+```
+
+### tests/
 
 ### README.md, .gitignore, .git
 
@@ -111,7 +132,7 @@ This is all for the GitHub repository, if we have one.
 
 # Documentation
 
-It is convenient to use package `roxygen2` to add the documentation directly 
+It is convenient to use package `roxygen2` (see also [this site](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html)) to add the documentation directly 
 to the .R files.
 
 ### For functions
@@ -166,10 +187,31 @@ snippet:
 ```
 
 ********************************************************************************
+# Build and install
+
+Once we have everyting ready, we can build and install the package. In R studio
+there is just **one button** for that.
+
+Alternatively, you can build your package using command prompt. The procedure is:
+
+1. Edit DESCRIPTION file
+2. Change R code and/or data files.
+3. Edit NAMESPACE file
+4. Update man files, e.g. with the help of `roxygen2::roxygenize`.
+
+Then in your terminal (command prompt): 
+
+```
+R CMD build shampoo
+R CMD check shampoo
+R CMD INSTALL shampoo
+```
+
+********************************************************************************
 
 # Making R package available
 
-Let's not care about CRAN and publish through GitHub!
+Let's not care about CRAN for now. Let's publish on GitHub!
 
 First, create the repository on GitHub.
 
@@ -189,5 +231,3 @@ Now you can install your package on any machine using:
 library(devtools)
 install_github("petrkeil/shampoo")
 ```
-
-

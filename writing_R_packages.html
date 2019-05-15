@@ -196,15 +196,20 @@ $(document).ready(function () {
 <h1>Tutorials</h1>
 <p>Simple, useful, great: <a href="http://r-pkgs.had.co.nz/">Hadley Wickham’s website</a></p>
 <p>Comprehensive: <a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html">Writing R Extensions</a></p>
+<p>Other nice tutorials are <a href="http://web.mit.edu/insong/www/pdf/rpackage_instructions.pdf">this one</a> or <a href="http://tinyheero.github.io/jekyll/update/2015/07/26/making-your-first-R-package.html">this one</a>.</p>
 <hr />
 </div>
 <div id="initialize" class="section level1">
 <h1>Initialize</h1>
 <p>Before we start, you might need the following packages:</p>
 <pre><code>install.packages(c(&quot;devtools&quot;, &quot;roxygen2&quot;, &quot;knitr&quot;))</code></pre>
+<p>We also need a <strong>name</strong>! Needs to be unique, easily “googleable”, avoid mixtures of upper and lower cases (RColorBrewer or Rcolorbrewer? EcoSimR or ecosimR or ecosimr?)</p>
 <p>Now we can initialize a package.</p>
 <p><strong>1. From within R console:</strong></p>
+<p>Using a function from <code>utils</code>:</p>
 <pre><code>package.skeleton(&quot;shampoo&quot;)</code></pre>
+<p>Using a function from <code>devtools</code>:</p>
+<pre><code>create_package(&quot;shampoo&quot;)</code></pre>
 <p>Note that all objects and functions that are currently in the R environment are exported!</p>
 <p><strong>2. With R studio:</strong></p>
 <p>File -&gt; New Project -&gt; New Directory -&gt; New Package</p>
@@ -236,11 +241,18 @@ Suggests: sp</code></pre>
 <p>This is where all data and stored objects (non-functions) live. The simplest way to bundle data with an R package is by putting <code>.RData</code> files in here.</p>
 <p>If you want the datasets to have their own documentation, insert a <code>data.R</code> file into the R/ folder for roxygen2 to parse.</p>
 </div>
-<div id="other-things-src-vignettes-tests" class="section level3">
-<h3>Other things: src/ vignettes/ tests/</h3>
-<p>This is where compiled code, vignettes, and code testing is. All useful, but we will skip it.</p>
-<p>Anyway, if you plan to include C++ code in your package, I strongly recommend to use a predefined template in R studio, i.e.:</p>
+<div id="src" class="section level3">
+<h3>src/</h3>
+<p>This is where compiled code is. If you plan to include C++ code in your package, I strongly recommend to use a predefined template in R studio, i.e.:</p>
 <p>File -&gt; New Project -&gt; New Directory -&gt; R package with C++ code</p>
+<p>For a really smooth intro to C++ in R see <a href="http://adv-r.had.co.nz/Rcpp.html">Hadley Wickham’s tutorial</a>.</p>
+</div>
+<div id="vignettes" class="section level3">
+<h3>vignettes/</h3>
+<pre><code>devtools::use_vignette(&quot;how_shampoo_works&quot;)</code></pre>
+</div>
+<div id="tests" class="section level3">
+<h3>tests/</h3>
 </div>
 <div id="readme.md-.gitignore-.git" class="section level3">
 <h3>README.md, .gitignore, .git</h3>
@@ -250,7 +262,7 @@ Suggests: sp</code></pre>
 </div>
 <div id="documentation" class="section level1">
 <h1>Documentation</h1>
-<p>It is convenient to use package <code>roxygen2</code> to add the documentation directly to the .R files.</p>
+<p>It is convenient to use package <code>roxygen2</code> (see also <a href="https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html">this site</a>) to add the documentation directly to the .R files.</p>
 <div id="for-functions" class="section level3">
 <h3>For functions</h3>
 <pre><code>#' Function that adds together two numbers.
@@ -295,9 +307,25 @@ add &lt;- function(x, y)
 <hr />
 </div>
 </div>
+<div id="build-and-install" class="section level1">
+<h1>Build and install</h1>
+<p>Once we have everyting ready, we can build and install the package. In R studio there is just <strong>one button</strong> for that.</p>
+<p>Alternatively, you can build your package using command prompt. The procedure is:</p>
+<ol style="list-style-type: decimal">
+<li>Edit DESCRIPTION file</li>
+<li>Change R code and/or data files.</li>
+<li>Edit NAMESPACE file</li>
+<li>Update man files, e.g. with the help of <code>roxygen2::roxygenize</code>.</li>
+</ol>
+<p>Then in your terminal (command prompt):</p>
+<pre><code>R CMD build shampoo
+R CMD check shampoo
+R CMD INSTALL shampoo</code></pre>
+<hr />
+</div>
 <div id="making-r-package-available" class="section level1">
 <h1>Making R package available</h1>
-<p>Let’s not care about CRAN and publish through GitHub!</p>
+<p>Let’s not care about CRAN for now. Let’s publish on GitHub!</p>
 <p>First, create the repository on GitHub.</p>
 <p>Second, initialize git for your package, and push it to the repository:</p>
 <pre><code>git init
