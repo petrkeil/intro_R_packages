@@ -47,7 +47,7 @@ install.packages(c("devtools", "roxygen2", "knitr"))
 ```
 
 We also need a **name**! Needs to be unique, easily "googleable", avoid mixtures
-of upper and lower cases (RColorBrewer or Rcolorbrewer? EcoSimR or ecosimR or ecosimr?)
+of upper and lower cases (RColorBrewer or Rcolorbrewer? EcoSimR or ecosimR or ecosimr?). Note: the winner in the best package name contest is `lubridate`.
 
 Now we can initialize a package.
 
