@@ -11,7 +11,6 @@
 
 <meta name="author" content="Petr Keil" />
 
-<meta name="date" content="2019-05-14" />
 
 <title>Writing R packages in R studio - a very simple intro</title>
 
@@ -347,7 +346,7 @@ summary {
 
 <h1 class="title toc-ignore">Writing R packages in R studio - a very simple intro</h1>
 <h4 class="author">Petr Keil</h4>
-<h4 class="date">May 14, 2019</h4>
+<h4 class="date">Nov 11, 2020</h4>
 
 </div>
 
@@ -435,7 +434,9 @@ Suggests: sp</code></pre>
 </div>
 <div id="documentation" class="section level1">
 <h1>Documentation</h1>
-<p>It is convenient to use package <code>roxygen2</code> (see also <a href="https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html">this site</a>) to add the documentation directly to the .R files.</p>
+<p>You can directly edit thee <code>.Rd</code> files in the <code>man</code> folder, but it is much more convenient and easier to write the documentation right above the R functions in the <code>R</code> folder.</p>
+<p>To do this, install and load package <code>roxygen2</code>. For a nice intro see <a href="https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html">this site</a>.</p>
+<p>Once you are done with the documentation, run <code>roxygen2::roxygenize()</code> in your R command line. In R studio, you can also set this to happen automatically before each build: Build -&gt; More -&gt; Configure Build Tools</p>
 <div id="for-functions" class="section level3">
 <h3>For functions</h3>
 <pre><code>#&#39; Function that adds together two numbers.
@@ -485,7 +486,7 @@ add &lt;- function(x, y)
 <p>The procedure is as follows:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Save</strong> all your files (code, documentation, descriptions, data, …)</li>
-<li>Update documentation with <code>roxygen2::roxygenize()</code>. You can also set this to happen automatically in the “Build” tab -&gt; More -&gt; Configure Build Tools</li>
+<li><strong>Update documentation</strong> with <code>roxygen2::roxygenize()</code>. You can also set this to happen automatically in R studio in Build -&gt; More -&gt; Configure Build Tools</li>
 <li>In R studio, hit the <strong>Install and Restart button</strong> in the “Build” tab.</li>
 </ol>
 <p>Alternatively, you can build your package using command prompt. The procedure is:</p>

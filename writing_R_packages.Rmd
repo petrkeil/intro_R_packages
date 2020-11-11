@@ -1,7 +1,7 @@
 ---
 title: "Writing R packages in R studio - a very simple intro"
 author: "Petr Keil"
-date: "May 14, 2019"
+date: "Nov 11, 2020"
 output: 
   html_document: 
     highlight: tango
@@ -134,8 +134,11 @@ This is all for the GitHub repository, if we have one.
 
 # Documentation
 
-It is convenient to use package `roxygen2` (see also [this site](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html)) to add the documentation directly 
-to the .R files.
+You can directly edit thee `.Rd` files in the `man` folder, but it is much more convenient and easier to write the documentation right above the R functions in the `R` folder.
+
+To do this, install and load package `roxygen2`. For a nice intro see [this site](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html).
+
+Once you are done with the documentation, run `roxygen2::roxygenize()` in your R command line. In R studio, you can also set this to happen automatically before each build: Build -> More -> Configure Build Tools
 
 ### For functions
 ```
@@ -196,8 +199,8 @@ everything together, compiles it, and makes the package available for installati
 The procedure is as follows:
 
 1. **Save** all your files (code, documentation, descriptions, data, ...)
-2. Update documentation with `roxygen2::roxygenize()`. You can also set this to happen 
-   automatically in the "Build" tab -> More -> Configure Build Tools
+2. **Update documentation** with `roxygen2::roxygenize()`. You can also set this to happen 
+   automatically in R studio in  Build -> More -> Configure Build Tools
 3. In R studio, hit the **Install and Restart button** in the "Build" tab. 
 
 Alternatively, you can build your package using command prompt. The procedure is:
