@@ -92,7 +92,9 @@ Suggests: sp
 
 ### NAMESPACE
 
-We will skip this for now.
+Advanced topic, not that necessary if packages are for personal use, we will skip this for now.
+
+Also, `roxygen2` takes care of this.
 
 ### man/
 
