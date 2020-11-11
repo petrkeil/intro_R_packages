@@ -1,6 +1,6 @@
 ---
 title: "Writing R packages in R studio - a very simple intro"
-author: "Petr Keil"
+author: "Petr Keil, Department of Spatial Sciences, FZP CZU"
 date: "Nov 11, 2020"
 output: 
   html_document: 
