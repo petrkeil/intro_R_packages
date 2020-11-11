@@ -173,10 +173,9 @@ Create `data.R` file in the `R/` folder and for each dataset insert the followin
 snippet:
 
 ```
-#' Prices of 50,000 round cut diamonds.
+#' Title of your data object
 #'
-#' A dataset containing the prices and other attributes of almost 54,000
-#' diamonds.
+#' Description of your data object. Plus, you can add something like:
 #'
 #' @format A data frame with 53940 rows and 10 variables:
 #' \describe{
@@ -191,15 +190,22 @@ snippet:
 ********************************************************************************
 # Build and install
 
-Once we have everyting ready, we can build and install the package. In R studio
-there is just **one button** for that.
+Before the package can be used, we must **build** it. This is a procedure that "glues"
+everything together, compiles it, and makes the package available for installation.
+
+The procedure is as follows:
+
+1. **Save** all your files (code, documentation, descriptions, data, ...)
+2. Update documentation with `roxygen2::roxygenize()`. You can also set this to happen 
+   automatically in the "Build" tab -> More -> Configure Build Tools
+3. In R studio, hit the **Install and Restart button** in the "Build" tab. 
 
 Alternatively, you can build your package using command prompt. The procedure is:
 
-1. Edit DESCRIPTION file
-2. Change R code and/or data files.
-3. Edit NAMESPACE file
-4. Update man files, e.g. with the help of `roxygen2::roxygenize`.
+- Edit DESCRIPTION file
+- Change R code and/or data files.
+- Edit NAMESPACE file
+- Update man files, e.g. with the help of `roxygen2::roxygenize`.
 
 Then in your terminal (command prompt): 
 
