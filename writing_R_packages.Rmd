@@ -78,11 +78,11 @@ File -> New Project -> New Directory -> New Package
 
 # What is in the folder?
 
-### R/
+## R/
 
 That is where the code lives. Good practice is to give each R function its own file, unless...
 
-### DESCRIPTION
+## DESCRIPTION
 
 This is where the metadata are.
 
@@ -93,18 +93,18 @@ Imports: plyr, raster
 Suggests: sp
 ```
 
-### NAMESPACE
+## NAMESPACE
 
 Advanced topic, not that necessary if packages are for personal use, we will skip this for now.
 
 Also, `roxygen2` takes care of this.
 
-### man/
+## man/
 
 This is where the help documentaion is. We don't need to worry about this
 with `roxygen2`.
 
-### data/
+## data/
 
 This is where all data and stored objects (non-functions) live. The simplest
 way to bundle data with an R package is by putting `.RData` files in here.
@@ -113,7 +113,7 @@ If you want the datasets to have their own documentation, insert a `data.R`
 file into the R/ folder for roxygen2 to parse.
 
 
-### src/
+## src/
 
 This is where compiled code is. If you plan to include C++ code in your package, I strongly recommend to use a predefined template in R studio, i.e.:
 
@@ -121,15 +121,15 @@ File -> New Project -> New Directory -> R package with C++ code
 
 For a really smooth intro to C++ in R see [Hadley Wickham's tutorial](http://adv-r.had.co.nz/Rcpp.html).
 
-### vignettes/ 
+## vignettes/ 
 
 ```
 devtools::use_vignette("how_shampoo_works")
 ```
 
-### tests/
+## tests/
 
-### README.md, .gitignore, .git
+## README.md, .gitignore, .git
 
 This is all for the GitHub repository, if we have one.
 
@@ -143,7 +143,7 @@ To do this, install and load package `roxygen2`. For a nice intro see [this site
 
 Once you are done with the documentation, run `roxygen2::roxygenize()` in your R command line. In R studio, you can also set this to happen automatically before each build: Build -> More -> Configure Build Tools
 
-### For functions
+## For functions
 ```
 #' Function that adds together two numbers.
 #' 
@@ -173,7 +173,7 @@ Examples of other useful declarations are:
 
 ```
 
-### For data 
+## For data 
 
 Create `data.R` file in the `R/` folder and for each dataset insert the following
 snippet:
