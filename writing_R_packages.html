@@ -350,11 +350,35 @@ summary {
 
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#why-r-packages"><span class="toc-section-number">1</span> Why R packages?</a></li>
+<li><a href="#tutorials"><span class="toc-section-number">2</span> Tutorials</a></li>
+<li><a href="#initialize"><span class="toc-section-number">3</span> Initialize</a></li>
+<li><a href="#what-is-in-the-folder"><span class="toc-section-number">4</span> What is in the folder?</a><ul>
+<li><a href="#r"><span class="toc-section-number">4.0.1</span> R/</a></li>
+<li><a href="#description"><span class="toc-section-number">4.0.2</span> DESCRIPTION</a></li>
+<li><a href="#namespace"><span class="toc-section-number">4.0.3</span> NAMESPACE</a></li>
+<li><a href="#man"><span class="toc-section-number">4.0.4</span> man/</a></li>
+<li><a href="#data"><span class="toc-section-number">4.0.5</span> data/</a></li>
+<li><a href="#src"><span class="toc-section-number">4.0.6</span> src/</a></li>
+<li><a href="#vignettes"><span class="toc-section-number">4.0.7</span> vignettes/</a></li>
+<li><a href="#tests"><span class="toc-section-number">4.0.8</span> tests/</a></li>
+<li><a href="#readme.md-.gitignore-.git"><span class="toc-section-number">4.0.9</span> README.md, .gitignore, .git</a></li>
+</ul></li>
+<li><a href="#documentation"><span class="toc-section-number">5</span> Documentation</a><ul>
+<li><a href="#for-functions"><span class="toc-section-number">5.0.1</span> For functions</a></li>
+<li><a href="#for-data"><span class="toc-section-number">5.0.2</span> For data</a></li>
+</ul></li>
+<li><a href="#build-and-install"><span class="toc-section-number">6</span> Build and install</a></li>
+<li><a href="#making-r-package-available"><span class="toc-section-number">7</span> Making R package available</a></li>
+</ul>
+</div>
 
 <p>This is material that I will use for an approx. 1-hour seminar giving intro to the very basic of R packaging.</p>
 <hr />
 <div id="why-r-packages" class="section level1">
-<h1>Why R packages?</h1>
+<h1><span class="header-section-number">1</span> Why R packages?</h1>
 <ul>
 <li>Clean and standardized way to <strong>document</strong> and <strong>share</strong> your code (and data!), even if you don’t plan to make a big ‘cran’ package.</li>
 <li>It forces you to organize the code better, and to respect the conventions.</li>
@@ -364,14 +388,14 @@ summary {
 <hr />
 </div>
 <div id="tutorials" class="section level1">
-<h1>Tutorials</h1>
+<h1><span class="header-section-number">2</span> Tutorials</h1>
 <p>Simple, useful, great: <a href="http://r-pkgs.had.co.nz/">Hadley Wickham’s website</a></p>
 <p>Comprehensive: <a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html">Writing R Extensions</a></p>
 <p>Other nice tutorials are <a href="http://web.mit.edu/insong/www/pdf/rpackage_instructions.pdf">this one</a> or <a href="http://tinyheero.github.io/jekyll/update/2015/07/26/making-your-first-R-package.html">this one</a>.</p>
 <hr />
 </div>
 <div id="initialize" class="section level1">
-<h1>Initialize</h1>
+<h1><span class="header-section-number">3</span> Initialize</h1>
 <p>Before we start, you might need the following packages:</p>
 <pre><code>install.packages(c(&quot;devtools&quot;, &quot;roxygen2&quot;, &quot;knitr&quot;))</code></pre>
 <p>We also need a <strong>name</strong>! Needs to be unique, easily “googleable”, avoid mixtures of upper and lower cases (RColorBrewer or Rcolorbrewer? EcoSimR or ecosimR or ecosimr?). Note: the winner in the best package name contest is <code>lubridate</code>.</p>
@@ -387,58 +411,58 @@ summary {
 <hr />
 </div>
 <div id="what-is-in-the-folder" class="section level1">
-<h1>What is in the folder?</h1>
+<h1><span class="header-section-number">4</span> What is in the folder?</h1>
 <div id="r" class="section level3">
-<h3>R/</h3>
+<h3><span class="header-section-number">4.0.1</span> R/</h3>
 <p>That is where the code lives. Good practice is to give each R function its own file, unless…</p>
 </div>
 <div id="description" class="section level3">
-<h3>DESCRIPTION</h3>
+<h3><span class="header-section-number">4.0.2</span> DESCRIPTION</h3>
 <p>This is where the metadata are.</p>
 <p>Two important lines are <code>Imports</code> and <code>Suggests</code>, e.g.:</p>
 <pre><code>Imports: plyr, raster
 Suggests: sp</code></pre>
 </div>
 <div id="namespace" class="section level3">
-<h3>NAMESPACE</h3>
+<h3><span class="header-section-number">4.0.3</span> NAMESPACE</h3>
 <p>Advanced topic, not that necessary if packages are for personal use, we will skip this for now.</p>
 <p>Also, <code>roxygen2</code> takes care of this.</p>
 </div>
 <div id="man" class="section level3">
-<h3>man/</h3>
+<h3><span class="header-section-number">4.0.4</span> man/</h3>
 <p>This is where the help documentaion is. We don’t need to worry about this with <code>roxygen2</code>.</p>
 </div>
 <div id="data" class="section level3">
-<h3>data/</h3>
+<h3><span class="header-section-number">4.0.5</span> data/</h3>
 <p>This is where all data and stored objects (non-functions) live. The simplest way to bundle data with an R package is by putting <code>.RData</code> files in here.</p>
 <p>If you want the datasets to have their own documentation, insert a <code>data.R</code> file into the R/ folder for roxygen2 to parse.</p>
 </div>
 <div id="src" class="section level3">
-<h3>src/</h3>
+<h3><span class="header-section-number">4.0.6</span> src/</h3>
 <p>This is where compiled code is. If you plan to include C++ code in your package, I strongly recommend to use a predefined template in R studio, i.e.:</p>
 <p>File -&gt; New Project -&gt; New Directory -&gt; R package with C++ code</p>
 <p>For a really smooth intro to C++ in R see <a href="http://adv-r.had.co.nz/Rcpp.html">Hadley Wickham’s tutorial</a>.</p>
 </div>
 <div id="vignettes" class="section level3">
-<h3>vignettes/</h3>
+<h3><span class="header-section-number">4.0.7</span> vignettes/</h3>
 <pre><code>devtools::use_vignette(&quot;how_shampoo_works&quot;)</code></pre>
 </div>
 <div id="tests" class="section level3">
-<h3>tests/</h3>
+<h3><span class="header-section-number">4.0.8</span> tests/</h3>
 </div>
 <div id="readme.md-.gitignore-.git" class="section level3">
-<h3>README.md, .gitignore, .git</h3>
+<h3><span class="header-section-number">4.0.9</span> README.md, .gitignore, .git</h3>
 <p>This is all for the GitHub repository, if we have one.</p>
 <hr />
 </div>
 </div>
 <div id="documentation" class="section level1">
-<h1>Documentation</h1>
+<h1><span class="header-section-number">5</span> Documentation</h1>
 <p>You can directly edit thee <code>.Rd</code> files in the <code>man</code> folder, but it is much more convenient and easier to write the documentation right above the R functions in the <code>R</code> folder.</p>
 <p>To do this, install and load package <code>roxygen2</code>. For a nice intro see <a href="https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html">this site</a>.</p>
 <p>Once you are done with the documentation, run <code>roxygen2::roxygenize()</code> in your R command line. In R studio, you can also set this to happen automatically before each build: Build -&gt; More -&gt; Configure Build Tools</p>
 <div id="for-functions" class="section level3">
-<h3>For functions</h3>
+<h3><span class="header-section-number">5.0.1</span> For functions</h3>
 <pre><code>#&#39; Function that adds together two numbers.
 #&#39; 
 #&#39; This is a really cool and complex function that adds two numbers. I have got
@@ -463,7 +487,7 @@ add &lt;- function(x, y)
 </code></pre>
 </div>
 <div id="for-data" class="section level3">
-<h3>For data</h3>
+<h3><span class="header-section-number">5.0.2</span> For data</h3>
 <p>Create <code>data.R</code> file in the <code>R/</code> folder and for each dataset insert the following snippet:</p>
 <pre><code>#&#39; Title of your data object
 #&#39;
@@ -481,7 +505,7 @@ add &lt;- function(x, y)
 </div>
 </div>
 <div id="build-and-install" class="section level1">
-<h1>Build and install</h1>
+<h1><span class="header-section-number">6</span> Build and install</h1>
 <p>Before the package can be used, we must <strong>build</strong> it. This is a procedure that “glues” everything together, compiles it, and makes the package available for installation.</p>
 <p>The procedure is as follows:</p>
 <ol style="list-style-type: decimal">
@@ -503,7 +527,7 @@ R CMD INSTALL shampoo</code></pre>
 <hr />
 </div>
 <div id="making-r-package-available" class="section level1">
-<h1>Making R package available</h1>
+<h1><span class="header-section-number">7</span> Making R package available</h1>
 <p>Let’s not care about CRAN for now. Let’s publish on GitHub!</p>
 <p>First, create the repository on GitHub.</p>
 <p>Second, initialize git for your package, and push it to the repository:</p>
